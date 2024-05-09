@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/listar" method="POST">{% csrf_token %}
+        {% if messages %}
+    <ul class="mensagem_do_servidor">
+        {% for mensagem in messages %}
+            <li {% if mensagem.tags %}class="alert alert-{{message.tags}}"{%endif %}>{{mensagem}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+        
+        <label>Usuario: </label>
+        <input  type="text" id="nome"name="nome"></input>
+        <label>Idade: </label>
+        <input  type="text" id="idade" name="idade"></input>
+        
+        
+        <button type="submit">Enviar</button>
+    </form>
+    <tr>
+        <td>Nome:</td>
+        <td>Idade:</td>
+    </tr>
+
+    {% for igs in lista_usuarios %}
+
+            <tr></br> 
+                <td style="text-align:center">{{igs.nome}} </td>
+                <td>{{igs.idade}}</td>
+                <td><a href="{% url 'cadastro' id=igs.id  %}">Editar</a></td>
+                <td><a href="{% url 'excluir' id=igs.id  %}">Excluir</a></td>
+            </tr>
+            {% endfor %}
+    
+</body>
+</html>
