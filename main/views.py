@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Pessoas
-from django.shortcuts import render
 
 def abre_index(request):
-    return render(request, 'index.html')
+        usuarios = Pessoas.objects.all()
+        return render (request ,'index.html', {'lista_usuarios':usuarios})
+   
 
 def gravar(request):
     if(request.method == 'POST'):
@@ -16,11 +17,7 @@ def gravar(request):
 
         )
         gravaCadastro.save()
-
-
-def listar(request):
-        usuarios = Pessoas.objects.all()
-        return render (request ,'index.html', {'lista_usuarios':usuarios})
+    return render (request ,'index.html')
 
 def cadastro(request, id):
     novo_registro = Pessoas.objects.filter(id=id)
@@ -46,7 +43,7 @@ def editar(request):
 def excluir(request, id):
     pessoa = Pessoas.objects.filter(id = id)
     pessoa.delete()
-    return render(request,'index.html')
+    return redirect ('/')
 
 
 

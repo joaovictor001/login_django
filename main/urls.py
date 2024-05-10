@@ -5,6 +5,6 @@ urlpatterns = [
 
     path('', views.abre_index, name= 'abre_index'),
     path('cadastro/<int:id>',views.cadastro, name="cadastro"),
-    path('listar',views.listar, name="listar"),
-     path('excluir/<int:id>',views.excluir, name="excluir"),
+    path('gravar',views.gravar, name="gravar"),
+    path('excluir/<int:id>',views.excluir, name="excluir"),
 ]

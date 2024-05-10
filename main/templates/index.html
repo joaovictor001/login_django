@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/listar" method="POST">{% csrf_token %}
+    <form action="/gravar" method="POST">{% csrf_token %}
         {% if messages %}
     <ul class="mensagem_do_servidor">
         {% for mensagem in messages %}
